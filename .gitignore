@@ -1,0 +1,4 @@
+media/
+__pycache__/
+example.py
+count_number.py
