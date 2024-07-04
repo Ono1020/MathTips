@@ -1,6 +1,6 @@
 from manim import *
 
-TIME = 10
+TIME = 5
 
 class SinCurve(Scene):
     def construct(self):
@@ -19,6 +19,7 @@ class SinCurve(Scene):
 
         # 変数等設定
 
+        text = Tex(r"$\sin{}$ Curve").scale(2)
         # 軸を追加
         # 詳しくはManim公式ドキュメントのAxesまで
         ax = Axes(
@@ -69,6 +70,9 @@ class SinCurve(Scene):
         # アニメーション関連
 
         # 各要素を表示
+        self.play(Write(text), run_time=2)
+        self.wait(1)
+        # self.play(text.animate.to_corner(UP + LEFT), run_time=1)
         self.play(
             Create(ax), 
             Write(origin), 
@@ -76,6 +80,7 @@ class SinCurve(Scene):
             Write(x_labels[1]),
             Write(x_labels[2]),
             Write(x_labels[3]),
+            FadeOut(text),
             Create(circle),
             Create(dot), 
             Create(dot_to_curve_line), 
@@ -90,3 +95,6 @@ class SinCurve(Scene):
         dot.remove_updater(go_around_circle)
 
         self.wait(1)
+
+scene = SinCurve()
+scene.render(preview=False)
